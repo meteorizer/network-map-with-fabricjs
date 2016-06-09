@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>fabric.js job 1</title>
+  </head>
+  <body>
+    <canvas id="cc" width="400" height="400"></canvas>
+  </body>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.6.2/fabric.min.js" charset="utf-8"></script>
+  <script type="text/javascript">
+
+    var canvas = new fabric.Canvas('cc');
+    var rect = new fabric.Rect({
+      left: 100,
+      top: 100,
+      fill: 'red',
+      width: 30,
+      height: 30,
+      angle: 30
+    });
+    canvas.add(rect);
+
+    var circle = new fabric.Circle({
+      radius: 20, fill: 'green', left: 100, top: 100
+    });
+    var triangle = new fabric.Triangle({
+      width: 20, height: 30, file: 'blue', left: 50, top: 50
+    });
+    canvas.add(circle, triangle);
+  </script>
+</html>
