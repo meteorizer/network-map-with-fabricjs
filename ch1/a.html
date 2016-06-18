@@ -5,7 +5,7 @@
     <title>fabric.js job 1</title>
   </head>
   <body>
-    <canvas id="cc" width="400" height="400"></canvas>
+    <canvas id="cc" width="600" height="400"></canvas>
   </body>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.6.2/fabric.min.js" charset="utf-8"></script>
   <script type="text/javascript">
@@ -24,9 +24,33 @@
     var circle = new fabric.Circle({
       radius: 20, fill: 'green', left: 100, top: 100
     });
+    circle.setGradient('fill', {
+      x1: 0,
+      y1: -circle.height / 2,
+      x2: 0,
+      y2: circle.height / 2,
+      colorStops: {
+        0: '#000',
+        1: '#fff'
+      }
+    });
     var triangle = new fabric.Triangle({
       width: 20, height: 30, file: 'blue', left: 50, top: 50
     });
+    fabric.Image.fromURL('cube.gif', function(oImg) {
+      oImg.scale(0.5).setFlipX(true);
+      oImg.set({left: 200, top: 200, angle: 30});
+      canvas.add(oImg);
+    });
     canvas.add(circle, triangle);
+    
+    rect.animate('angle', '200', {
+      onChange: canvas.renderAll.bind(canvas)
+    });
+    rect.animate('left', 400, {
+      onChange: canvas.renderAll.bind(canvas),
+      duration: 1000,
+      easing: fabric.util.ease.easeOutBounce
+    });
   </script>
 </html>
